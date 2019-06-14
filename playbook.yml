@@ -1,0 +1,13 @@
+---
+- hosts: local
+  become: yes
+  tasks: 
+
+  - name: Conditionally decide to load in variables into 'plans' when x is 0, otherwise do not. (2.2)
+    include_vars:
+      file: vars/mysql_conf.yml
+
+  - template:
+      src: /home/ubuntu/mysql-tuning/templates/mysql_conf.j2
+      dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+
